@@ -41,5 +41,9 @@ public class Evaluacion {
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
+    // Constructor  vacio   
+    // Constructor con parametros
+    
+
     // Getters y Setters
 }

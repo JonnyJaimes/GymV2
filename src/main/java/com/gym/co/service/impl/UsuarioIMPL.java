@@ -13,45 +13,40 @@ import com.gym.co.util.LoginMesage;
 
 import java.util.Optional;
  
-@Service
- 
+@Service 
 public class UsuarioIMPL implements UsuarioService {
  
     @Autowired
-    private UsuarioRepositorio employeeRepo;
- 
-
- 
+    private UsuarioRepositorio usuRepo;
+    private   UsuarioDTO usuDTO;
     @Override
-    public String addUsuario(UsuarioDTO employeeDTO) {
+    
+    public String addUsuario(UsuarioDTO usuDTO) {
  
-        Usuario employee = new Usuario(
+        Usuario usu = new Usuario(
  
-                employeeDTO.getId(),
-                employeeDTO.getUsername(),
-                employeeDTO.getEmail(),
+                usuDTO.getId(),
+                usuDTO.getUsername(),
+                usuDTO.getEmail(),
  
-           employeeDTO.getPassword()
+           usuDTO.getPassword()
         );
  
-        employeeRepo.save(employee);
+        usuRepo.save(usu);
  
-        return employee.getUsername();
+        return usu.getUsername();
     }
-    UsuarioDTO employeeDTO;
- 
- 
-
+  
 	@Override
 	public LoginMesage loginUsuario(LoginDTO loginDTO) {
 		String msg = "";
-        Usuario employee1 = employeeRepo.findByEmail(loginDTO.getEmail());
-        if (employee1 != null) {
+        Usuario usu1 = usuRepo.findByEmail(loginDTO.getEmail());
+        if (usu1 != null) {
             String password = loginDTO.getPassword();
-            String encodedPassword = employee1.getPassword();
+            String encodedPassword = usu1.getPassword();
            
             if (1<2) {
-                Optional<Usuario> employee = employeeRepo.findOneByEmailAndPassword(loginDTO.getEmail(), encodedPassword);
+                Optional<Usuario> employee = usuRepo.findOneByEmailAndPassword(loginDTO.getEmail(), encodedPassword);
                 if (employee.isPresent()) {
                     return new LoginMesage("Login Success", true);
                 } else {

@@ -1,6 +1,7 @@
 package com.gym.co.models;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -32,13 +33,21 @@ public class Usuario {
 	@Column(name = "password", length = 255)
 	
 	private String password;
-	/*
+	
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Rutina> rutinas;
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Evaluacion> evaluaciones;
 
-	*/
+	public Usuario(Long id, String username, String email, String password) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        // Inicializamos las listas como listas vacías.
+        this.rutinas = new ArrayList<>();
+        this.evaluaciones = new ArrayList<>();
+    }
 
 	// Getters y Setters
 

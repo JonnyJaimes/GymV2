@@ -6,16 +6,15 @@ import lombok.Setter;
 @Getter
 @Setter
 public class LoginDTO {
-private String email;
-private String password;
+	private String email;
+	private String password;
 
-public LoginDTO() {
-}
+	public LoginDTO() {
+	}
 
-public LoginDTO(String email, String password) {
-this.email = email;
-this.password = password;
-}
-
+	public LoginDTO(String email, String password) {
+		this.email = email;
+		this.password = password;
+	}
 
 }
