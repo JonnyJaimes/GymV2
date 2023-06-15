@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.gym.co.models.Usuario;
 import com.gym.co.repository.UsuarioRepositorio;
-@Service
+
 public class UserService {
 
     @Autowired

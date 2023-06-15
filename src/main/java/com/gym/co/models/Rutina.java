@@ -31,13 +31,9 @@ public class Rutina {
     @Column(name = "nombre", length = 255)
     private String nombre;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario;
+    private Long entrenadorId;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "entrenador_id", nullable = false)
-    private Entrenador entrenador;
+   
 
     // Detalles de la rutina
     @Column(name = "descripcion", length = 1000)
@@ -63,6 +59,18 @@ public class Rutina {
 
     @OneToMany(mappedBy = "rutina", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Ejercicio> ejercicios;
+    
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "entrenador_id", nullable = false)
+    private Entrenador entrenador;
+
+ 
+    
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
+
+
     
 }
 

@@ -4,12 +4,13 @@ import java.util.Optional;
 
 import org.apache.catalina.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 
 import com.gym.co.models.Entrenador;
 import com.gym.co.models.Evaluacion;
 import com.gym.co.models.Usuario;
-
+@EnableJpaRepositories
 @Repository
 public interface EntrenadorRepositorio extends JpaRepository<Entrenador, Long> {    
 

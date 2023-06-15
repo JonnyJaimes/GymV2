@@ -2,6 +2,7 @@ package com.gym.co.controllers;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,8 @@ import com.gym.co.util.LoginMesage;
 
 import jakarta.servlet.http.HttpServletRequest;
 import com.gym.co.models.*;
+
+
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/entrenadores")

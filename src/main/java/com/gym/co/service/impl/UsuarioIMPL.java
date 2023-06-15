@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 
 import com.gym.co.dto.LoginDTO;
 import com.gym.co.dto.UsuarioDTO;
+import com.gym.co.models.Rutina;
 import com.gym.co.models.Usuario;
+import com.gym.co.repository.RutinaRepositorio;
 import com.gym.co.repository.UsuarioRepositorio;
 import com.gym.co.service.UsuarioService;
 import com.gym.co.util.LoginMesage;
@@ -18,6 +20,9 @@ public class UsuarioIMPL implements UsuarioService {
  
     @Autowired
     private UsuarioRepositorio usuRepo;
+    @Autowired
+    private RutinaRepositorio ruRepo;
+    
     private   UsuarioDTO usuDTO;
     @Override
     
@@ -60,6 +65,20 @@ public class UsuarioIMPL implements UsuarioService {
             return new LoginMesage("Email not exits", false);
         }
  
+	}
+	
+	public boolean asignarRutina(Long usuarioId, Long rutinaId) {
+	    Usuario usuario = usuRepo.findById(usuarioId).orElse(null);
+	    Rutina rutina = ruRepo.findById(rutinaId).orElse(null);
+	    
+	    if (usuario != null && rutina != null) {
+	        usuario.getRutinas().add(rutina);
+	        rutina.setUsuario(usuario);
+	        usuRepo.save(usuario);
+	        return true;
+	    }
+	    
+	    return false;
 	}
 
 	

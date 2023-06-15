@@ -8,5 +8,7 @@ public interface UsuarioService {
     String addUsuario(UsuarioDTO usuarioDTO);
  
     LoginMesage loginUsuario(LoginDTO loginDTO);
+
+	boolean asignarRutina(Long usuarioId, Long rutinaId);
  
 }
