@@ -77,6 +77,4 @@ Sigue estos pasos para ejecutar la aplicación en tu entorno local:
 - Jony Edward Jaimes Silva
 - Código: 1151733
 
-Si tienes alguna pregunta o necesitas ayuda adicional, no dudes en contactarme.
 
-Espero que esta información sea útil para crear el README.md de tu aplicación GymV2. ¡Buena suerte con tu proyecto!
