@@ -8,8 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.gym.co.models.Evaluacion;
 @EnableJpaRepositories
 @Repository
-public interface EvaluacionRepositorio extends JpaRepository<Evaluacion, Long> {
-    
+public interface EvaluacionRepository extends JpaRepository<Evaluacion, Long> {
     
     List<Evaluacion> findAllByUsuarioId(Long usuarioId);
 }

@@ -1,6 +1,7 @@
 package com.gym.co.models;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -10,9 +11,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,16 +26,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Rutina {
 
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "nombre", length = 255)
     private String nombre;
-
-    private Long entrenadorId;
-
-   
 
     // Detalles de la rutina
     @Column(name = "descripcion", length = 1000)
@@ -56,19 +54,39 @@ public class Rutina {
 
     @Column(name = "categoria", length = 255)
     private String categoria; // Categoría de la rutina
+    
+    @ManyToMany(mappedBy = "rutinas")
+    private List<Usuario> usuarios = new ArrayList<>();
 
     @OneToMany(mappedBy = "rutina", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Ejercicio> ejercicios;
-    
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "entrenador_id", nullable = false)
+    private List<Ejercicio> ejercicios = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "entrenador_id")
     private Entrenador entrenador;
 
- 
+    public void addUsuario(Usuario usuario) {
+        this.usuarios.add(usuario);
+        usuario.getRutinas().add(this);
+    }
+
+
+    public void setUsuarios(Usuario usuario) {
+        this.usuarios.clear();
+        if (usuario != null) {
+            this.usuarios.add(usuario);
+            usuario.getRutinas().add(this);
+        }
+    }
+
+
+    public List<Ejercicio> getEjercicios() {
+        return ejercicios;
+    }
+
+
     
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario;
+  
 
 
     

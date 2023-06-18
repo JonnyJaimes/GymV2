@@ -37,13 +37,12 @@ public class Evaluacion {
     @Column(name = "masa_muscular")
     private Double masaMuscular;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "usuario_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    // Constructor  vacio   
-    // Constructor con parametros
-    
+    // Constructor vacío
+    // Constructor con parámetros
 
     // Getters y Setters
 }

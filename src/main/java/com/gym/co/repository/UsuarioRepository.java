@@ -11,7 +11,7 @@ import com.gym.co.models.Usuario;
 
 @EnableJpaRepositories
 @Repository
-public interface UsuarioRepositorio extends JpaRepository<Usuario, Long> {
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     Usuario findByEmail(String email);
     boolean existsByEmail(String email);
     Optional<Usuario> findOneByEmailAndPassword(String email, String password);

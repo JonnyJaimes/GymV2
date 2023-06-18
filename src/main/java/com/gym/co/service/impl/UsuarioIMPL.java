@@ -6,10 +6,10 @@ import org.springframework.stereotype.Service;
 
 import com.gym.co.dto.LoginDTO;
 import com.gym.co.dto.UsuarioDTO;
-import com.gym.co.models.Rutina;
+
 import com.gym.co.models.Usuario;
-import com.gym.co.repository.RutinaRepositorio;
-import com.gym.co.repository.UsuarioRepositorio;
+
+import com.gym.co.repository.UsuarioRepository;
 import com.gym.co.service.UsuarioService;
 import com.gym.co.util.LoginMesage;
 
@@ -19,12 +19,8 @@ import java.util.Optional;
 public class UsuarioIMPL implements UsuarioService {
  
     @Autowired
-    private UsuarioRepositorio usuRepo;
-    @Autowired
-    private RutinaRepositorio ruRepo;
-    
-    private   UsuarioDTO usuDTO;
-    @Override
+    private UsuarioRepository usuRepo;
+
     
     public String addUsuario(UsuarioDTO usuDTO) {
  
@@ -66,21 +62,4 @@ public class UsuarioIMPL implements UsuarioService {
         }
  
 	}
-	
-	public boolean asignarRutina(Long usuarioId, Long rutinaId) {
-	    Usuario usuario = usuRepo.findById(usuarioId).orElse(null);
-	    Rutina rutina = ruRepo.findById(rutinaId).orElse(null);
-	    
-	    if (usuario != null && rutina != null) {
-	        usuario.getRutinas().add(rutina);
-	        rutina.setUsuario(usuario);
-	        usuRepo.save(usuario);
-	        return true;
-	    }
-	    
-	    return false;
-	}
-
-	
- 
 }

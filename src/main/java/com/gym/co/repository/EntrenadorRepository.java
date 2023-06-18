@@ -12,11 +12,10 @@ import com.gym.co.models.Evaluacion;
 import com.gym.co.models.Usuario;
 @EnableJpaRepositories
 @Repository
-public interface EntrenadorRepositorio extends JpaRepository<Entrenador, Long> {    
+public interface EntrenadorRepository extends JpaRepository<Entrenador , Long> {    
 
-    Entrenador findByEmail(String email);
+	Entrenador findByEmail(String email);
+    Optional<Entrenador> findById(Long id);
     List<Entrenador> findAllByEntrenadorId(Long entrenadorId);
-    Entrenador save(User entrenador);
-
     Optional<Entrenador> findOneByEmailAndPassword(String email, String password);
 }

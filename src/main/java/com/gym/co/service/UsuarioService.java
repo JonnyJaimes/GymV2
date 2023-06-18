@@ -5,10 +5,8 @@ import com.gym.co.dto.UsuarioDTO;
 import com.gym.co.util.LoginMesage;
 
 public interface UsuarioService {
-    String addUsuario(UsuarioDTO usuarioDTO);
- 
-    LoginMesage loginUsuario(LoginDTO loginDTO);
 
-	boolean asignarRutina(Long usuarioId, Long rutinaId);
- 
+	String addUsuario(UsuarioDTO usuarioDTO);
+	 
+    LoginMesage loginUsuario(LoginDTO loginDTO);
 }

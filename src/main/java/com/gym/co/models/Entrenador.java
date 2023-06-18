@@ -23,28 +23,25 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Entrenador {
 	@Id
-	@Column(name = "entrenador_id", length = 45)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "entrenador_id", length = 45)
     private Long entrenadorId;
+
     @Column(name = "username", length = 255)
     private String username;
+
     @Column(name = "email", length = 255)
     private String email;
+
     @Column(name = "password", length = 255)
     private String password;
 
     @OneToMany(mappedBy = "entrenador", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Rutina> rutinas;
-
-    // Getters y Setters
+    private List<Rutina> rutinas = new ArrayList<>();
+     
     
-	public Entrenador(Long id, String username, String email, String password) {
-        this.entrenadorId = id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        // Inicializamos las listas como listas vacías.
-        this.rutinas = new ArrayList<>();
-        
-    }
+
+
+
+	
 }

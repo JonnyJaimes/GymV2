@@ -19,19 +19,32 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Ejercicio {
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "nombre", length = 255)
     private String nombre;
+
     @Column(name = "descripcion", length = 255)
     private String descripcion;
+
     @Column(name = "repeticiones")
     private Integer repeticiones;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "rutina_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "rutina_id")
     private Rutina rutina;
+
+
+     
+    public void setRutina(Rutina rutina) {
+        if (rutina != null) {
+            this.rutina = rutina;
+            rutina.getEjercicios().add(this);
+        }
+    }
+
 
     // Getters y Setters
 }

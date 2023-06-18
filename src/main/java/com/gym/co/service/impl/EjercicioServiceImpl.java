@@ -2,48 +2,60 @@ package com.gym.co.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
-import com.gym.co.dto.EjercicioDTO;
 import com.gym.co.models.Ejercicio;
-import com.gym.co.repository.EjercicioRepositorio;
+
+import com.gym.co.models.Rutina;
+import com.gym.co.repository.EjercicioRepository;
+
+import com.gym.co.repository.RutinaRepository;
 import com.gym.co.service.EjercicioService;
 
 @Service
 public class EjercicioServiceImpl implements EjercicioService {
 
-    @Autowired
-    private EjercicioRepositorio ejercicioRepositorio;
+    private final EjercicioRepository ejercicioRepository;
+    private final RutinaRepository rutinaRepository;
 
-    // ... Otros métodos ...
-
-    @Override
-    public List<Ejercicio> getEjerciciosByIds1(List<Long> ejercicioIds) {
-        return ejercicioRepositorio.findByIdIn(ejercicioIds);
+    public EjercicioServiceImpl(EjercicioRepository ejercicioRepository, RutinaRepository rutinaRepository) {
+        this.ejercicioRepository = ejercicioRepository;
+        this.rutinaRepository = rutinaRepository;
     }
 
-	@Override
-	public Ejercicio addEjercicio(Long entrenadorId, Long rutinaId, EjercicioDTO ejercicioDTO) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public Ejercicio addEjercicio(Long rutinaId, Ejercicio ejercicio) {
+        Rutina rutina = rutinaRepository.findById(rutinaId)
+                .orElseThrow(() -> new RuntimeException("Rutina no encontrada"));
 
-	@Override
-	public Ejercicio updateEjercicio(Long entrenadorId, Long rutinaId, Long ejercicioId, EjercicioDTO ejercicioDTO) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        ejercicio.setRutina(rutina);
+        return ejercicioRepository.save(ejercicio);
+    }
 
-	@Override
-	public boolean deleteEjercicio(Long entrenadorId, Long rutinaId, Long ejercicioId) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public Ejercicio updateEjercicio(Long ejercicioId, Ejercicio ejercicio) {
+        Ejercicio existingEjercicio = ejercicioRepository.findById(ejercicioId)
+                .orElseThrow(() -> new RuntimeException("Ejercicio no encontrado"));
 
-	@Override
-	public List<Ejercicio> getEjerciciosByIds(List<Long> ejercicioIds) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        existingEjercicio.setNombre(ejercicio.getNombre());
+        // ...otros campos que deseas actualizar...
+
+        return ejercicioRepository.save(existingEjercicio);
+    }
+
+    @Override
+    public boolean deleteEjercicio(Long ejercicioId) {
+        ejercicioRepository.deleteById(ejercicioId);
+        return true;
+    }
+
+    @Override
+    public List<Ejercicio> getEjerciciosByIds(List<Long> ejercicioIds) {
+        return ejercicioRepository.findAllById(ejercicioIds);
+    }
+
+    // Resto de tu código
 }
+
+

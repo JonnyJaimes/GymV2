@@ -12,18 +12,13 @@ import com.gym.co.util.LoginMesage;
 
 public interface EntrenadorService {
     
-	 String addEntrenador(EntrenadorDTO EntrenadorDTO);
-	 
-	LoginMesage loginEntrenador(LoginDTO loginDTO);
-
-	Entrenador getEntrenadorById(Long entrenadorId);
-
-	List<Rutina> getRutinas(Long entrenadorId);
-
-	Rutina updateRutina(Long entrenadorId, Long rutinaId, RutinaDTO rutinaDTO);
-
-	Rutina createRutina(Long entrenadorId, RutinaDTO rutinaDTO);
-	   boolean deleteRutina (Long entrenadorId, Long rutinaId);
-	   
+	 String addEntrenador(Entrenador usDTO);
+	    LoginMesage loginEntrenador(LoginDTO loginDTO);
+	    Entrenador getEntrenadorById(Long entrenadorId);
+	    Rutina createRutina(Long entrenadorId, Rutina rutina);
+	    List<Rutina> getAllRutinas();
+	    Rutina updateRutina(Long rutinaId, Rutina rutina);
+	    boolean deleteRutina(Long rutinaId);
+	    Rutina getRutinaById(Long rutinaId);
 	
 }
